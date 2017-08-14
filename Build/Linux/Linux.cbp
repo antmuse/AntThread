@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Linux" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../Lib/Bit32/Linux/AntThread-32D" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="Temp/Debug/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="../../Include/" />
+					<Add directory="../../Include/Public" />
+					<Add directory="../../Include/Thread" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="../../Lib/Bit32/Linux/AntThread-32" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="Temp/Release/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../../Include/" />
+					<Add directory="../../Include/Public" />
+					<Add directory="../../Include/Thread" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="../../Include/HConfig.h" />
+		<Unit filename="../../Include/Public/IAppLogger.h" />
+		<Unit filename="../../Include/Public/heapsort.h" />
+		<Unit filename="../../Include/Public/irrAllocator.h" />
+		<Unit filename="../../Include/Public/irrArray.h" />
+		<Unit filename="../../Include/Public/irrList.h" />
+		<Unit filename="../../Include/Public/irrMath.h" />
+		<Unit filename="../../Include/Public/irrString.h" />
+		<Unit filename="../../Include/Thread/CMutex.h" />
+		<Unit filename="../../Include/Thread/CThread.h" />
+		<Unit filename="../../Include/Thread/CThreadEvent.h" />
+		<Unit filename="../../Include/Thread/CThreadPool.h" />
+		<Unit filename="../../Include/Thread/IRunnable.h" />
+		<Unit filename="../../Include/irrTypes.h" />
+		<Unit filename="../../Source/Public/IAppLogger.cpp" />
+		<Unit filename="../../Source/Thread/CMutex.cpp" />
+		<Unit filename="../../Source/Thread/CThread.cpp" />
+		<Unit filename="../../Source/Thread/CThreadEvent.cpp" />
+		<Unit filename="../../Source/Thread/CThreadPool.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
