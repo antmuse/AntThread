@@ -1,15 +1,19 @@
-﻿Build started 2017/8/14 9:48:58.
+﻿Build started 2017/8/15 11:30:35.
      1>Project "F:\Temp\AntThread\Build\Windows\Thread\Thread.vcxproj" on node 2 (build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(298,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
      1>InitializeBuildStatus:
-         Touching "F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\Thread.unsuccessfulbuild".
+         Creating "F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\Thread.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\Include /I..\..\..\Include\Thread /I..\..\..\Include\Public /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\\" /Fd"F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\vc100.pdb" /Gd /TP /errorReport:prompt ..\..\..\Source\Public\IAppLogger.cpp ..\..\..\Source\Thread\CThreadPool.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\Include /I..\..\..\Include\Thread /I..\..\..\Include\Public /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\\" /Fd"F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\vc100.pdb" /Gd /TP /errorReport:prompt ..\..\..\Source\Public\IAppLogger.cpp ..\..\..\Source\Thread\CMutex.cpp ..\..\..\Source\Thread\CThread.cpp ..\..\..\Source\Thread\CThreadEvent.cpp ..\..\..\Source\Thread\CThreadPool.cpp
          IAppLogger.cpp
      1>..\..\..\Source\Public\IAppLogger.cpp(35): warning C4996: '_vsnwprintf': This function or variable may be unsafe. Consider using _vsnwprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(488) : see declaration of '_vsnwprintf'
      1>..\..\..\Source\Public\IAppLogger.cpp(49): warning C4996: 'vsnprintf': This function or variable may be unsafe. Consider using vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(354) : see declaration of 'vsnprintf'
+         CMutex.cpp
+     1>..\..\..\Source\Thread\CMutex.cpp(25): warning C4018: '<=' : signed/unsigned mismatch
+         CThread.cpp
+         CThreadEvent.cpp
          CThreadPool.cpp
        Lib:
          D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\Lib.exe /OUT:"F:\Temp\AntThread\Build\Windows\..\..\Lib\Bit64\Windows\Thread-64.lib" /NOLOGO /LTCG F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\IAppLogger.obj
@@ -25,4 +29,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.72
+Time Elapsed 00:00:01.51
