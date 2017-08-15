@@ -1,7 +1,10 @@
-# AntThread V1.0.0.0
+AntThread V1.0.0.0
+====
 A cross platform thread lib, current for Windows&amp;Linux(It's easy to port to Andriod platform).
 # Usage
+----
 
+```cpp
 #include "IRunnable.h"
 #include "CThread.h"
 #include "CThreadPool.h"
@@ -52,3 +55,4 @@ int main(int argc, char** argv){
     pool.stop();
     return 0;
 }
+```
