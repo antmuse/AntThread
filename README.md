@@ -9,6 +9,8 @@ A cross platform thread lib, current for Windows&amp;Linux(It's easy to port to 
 #include "CThread.h"
 #include "CThreadPool.h"
 
+using namespace irr;
+
 //for thread test
 class CWorker : public IRunnable{
     public:
@@ -31,19 +33,15 @@ void AppWorker(void* param){
 
 //for thread test
 int main(int argc, char** argv){
-    const u32 max = 3;
-    CThread* allthread[max];
+    CThread* thread;
     CWorker wk;
-    for(u32 i=0; i<max; ++i){
-        allthread[i] = new CThread();
-        allthread[i]->start(wk);
-    }
+    thread = new CThread();
+    thread->start(wk);
+    thread->join();
+    delete thread;
 
-    for(u32 i=0; i<max; ++i){
-        allthread[i]->join();
-    }
-
-
+    //pool test
+    const u32 max = 3;
     CThreadPool pool(max);
     pool.start();
     for(u32 i=0; i<max; ++i){
