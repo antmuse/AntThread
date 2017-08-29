@@ -84,8 +84,12 @@ namespace irr{
     //test process
     void AppStartProcesses(){
         CProcessManager::DProcessParam params;
+#if defined(APP_PLATFORM_WINDOWS)
         //params.push_back(io::path("f:\\test.txt"));
+        CProcessHandle* proc = CProcessManager::launch("notepad.exe", params);
+#else
         CProcessHandle* proc = CProcessManager::launch("/usr/bin/gnome-calculator", params);
+#endif
         if(proc){
             printf("AppStartProcesses success\n");
             proc->wait();

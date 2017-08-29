@@ -1,30 +1,44 @@
-﻿Build started 2017/8/28 9:51:57.
-     1>Project "F:\Temp\AntThread\Build\Windows\Thread\Thread.vcxproj" on node 2 (build target(s)).
+﻿Build started 2017/8/29 17:11:05.
+     1>Project "E:\Share\AntThread\Build\Windows\Thread\Thread.vcxproj" on node 2 (build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(298,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
      1>InitializeBuildStatus:
-         Creating "F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\Thread.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Creating "E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\Thread.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\Include /I..\..\..\Include\Thread /I..\..\..\Include\Public /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\\" /Fd"F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\vc100.pdb" /Gd /TP /errorReport:prompt ..\..\..\Source\Thread\CProcessHandle.cpp ..\..\..\Source\Thread\CReadWriteLock.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\Include /I..\..\..\Include\Thread /I..\..\..\Include\Public /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\\" /Fd"E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\vc100.pdb" /Gd /TP /errorReport:prompt ..\..\..\Source\Public\IAppLogger.cpp ..\..\..\Source\Thread\CMutex.cpp ..\..\..\Source\Thread\CNamedMutex.cpp ..\..\..\Source\Thread\CPipe.cpp ..\..\..\Source\Thread\CProcessHandle.cpp ..\..\..\Source\Thread\CProcessManager.cpp ..\..\..\Source\Thread\CReadWriteLock.cpp ..\..\..\Source\Thread\CSemaphore.cpp ..\..\..\Source\Thread\CThread.cpp ..\..\..\Source\Thread\CThreadEvent.cpp ..\..\..\Source\Thread\CThreadPool.cpp
+         IAppLogger.cpp
+     1>..\..\..\Source\Public\IAppLogger.cpp(35): warning C4996: '_vsnwprintf': This function or variable may be unsafe. Consider using _vsnwprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(488) : see declaration of '_vsnwprintf'
+     1>..\..\..\Source\Public\IAppLogger.cpp(49): warning C4996: 'vsnprintf': This function or variable may be unsafe. Consider using vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(354) : see declaration of 'vsnprintf'
+         CMutex.cpp
+     1>..\..\..\Source\Thread\CMutex.cpp(25): warning C4018: '<=' : signed/unsigned mismatch
+         CNamedMutex.cpp
+         CPipe.cpp
          CProcessHandle.cpp
+         CProcessManager.cpp
          CReadWriteLock.cpp
+         CSemaphore.cpp
+         CThread.cpp
+         CThreadEvent.cpp
+         CThreadPool.cpp
        Lib:
-         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\Lib.exe /OUT:"F:\Temp\AntThread\Build\Windows\..\..\Lib\Bit64\Windows\Thread-64.lib" /NOLOGO /LTCG F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\IAppLogger.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CMutex.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CNamedMutex.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CPipe.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CProcessHandle.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CProcessManager.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CReadWriteLock.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CSemaphore.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CThread.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CThreadEvent.obj
-         F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CThreadPool.obj
-         Thread.vcxproj -> F:\Temp\AntThread\Build\Windows\..\..\Lib\Bit64\Windows\Thread-64.lib
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\Lib.exe /OUT:"E:\Share\AntThread\Build\Windows\..\..\Lib\Bit64\Windows\Thread-64.lib" /NOLOGO /LTCG E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\IAppLogger.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CMutex.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CNamedMutex.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CPipe.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CProcessHandle.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CProcessManager.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CReadWriteLock.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CSemaphore.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CThread.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CThreadEvent.obj
+         E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\CThreadPool.obj
+         Thread.vcxproj -> E:\Share\AntThread\Build\Windows\..\..\Lib\Bit64\Windows\Thread-64.lib
        FinalizeBuildStatus:
-         Deleting file "F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\Thread.unsuccessfulbuild".
-         Touching "F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Thread\Thread.lastbuildstate".
-     1>Done Building Project "F:\Temp\AntThread\Build\Windows\Thread\Thread.vcxproj" (build target(s)).
+         Deleting file "E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\Thread.unsuccessfulbuild".
+         Touching "E:\Share\AntThread\Build\Windows\Temp\Bit64\Release\Thread\Thread.lastbuildstate".
+     1>Done Building Project "E:\Share\AntThread\Build\Windows\Thread\Thread.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.14
+Time Elapsed 00:00:03.90
