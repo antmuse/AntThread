@@ -42,15 +42,26 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Linker>
+			<Add library="pthread" />
+		</Linker>
 		<Unit filename="../../Include/HConfig.h" />
 		<Unit filename="../../Include/Public/IAppLogger.h" />
+		<Unit filename="../../Include/Public/IReferenceCounted.h" />
 		<Unit filename="../../Include/Public/heapsort.h" />
 		<Unit filename="../../Include/Public/irrAllocator.h" />
 		<Unit filename="../../Include/Public/irrArray.h" />
 		<Unit filename="../../Include/Public/irrList.h" />
+		<Unit filename="../../Include/Public/irrMap.h" />
 		<Unit filename="../../Include/Public/irrMath.h" />
 		<Unit filename="../../Include/Public/irrString.h" />
 		<Unit filename="../../Include/Thread/CMutex.h" />
+		<Unit filename="../../Include/Thread/CNamedMutex.h" />
+		<Unit filename="../../Include/Thread/CPipe.h" />
+		<Unit filename="../../Include/Thread/CProcessHandle.h" />
+		<Unit filename="../../Include/Thread/CProcessManager.h" />
+		<Unit filename="../../Include/Thread/CReadWriteLock.h" />
+		<Unit filename="../../Include/Thread/CSemaphore.h" />
 		<Unit filename="../../Include/Thread/CThread.h" />
 		<Unit filename="../../Include/Thread/CThreadEvent.h" />
 		<Unit filename="../../Include/Thread/CThreadPool.h" />
@@ -58,6 +69,12 @@
 		<Unit filename="../../Include/irrTypes.h" />
 		<Unit filename="../../Source/Public/IAppLogger.cpp" />
 		<Unit filename="../../Source/Thread/CMutex.cpp" />
+		<Unit filename="../../Source/Thread/CNamedMutex.cpp" />
+		<Unit filename="../../Source/Thread/CPipe.cpp" />
+		<Unit filename="../../Source/Thread/CProcessHandle.cpp" />
+		<Unit filename="../../Source/Thread/CProcessManager.cpp" />
+		<Unit filename="../../Source/Thread/CReadWriteLock.cpp" />
+		<Unit filename="../../Source/Thread/CSemaphore.cpp" />
 		<Unit filename="../../Source/Thread/CThread.cpp" />
 		<Unit filename="../../Source/Thread/CThreadEvent.cpp" />
 		<Unit filename="../../Source/Thread/CThreadPool.cpp" />

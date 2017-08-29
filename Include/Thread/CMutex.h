@@ -12,6 +12,7 @@
 #define APP_CMUTEX_H
 
 #include "HConfig.h"
+#include "HMutexType.h"
 
 #if defined( APP_PLATFORM_WINDOWS )
 #include <winsock2.h>   //just here to prevent <windock.h>
@@ -24,18 +25,6 @@
 #endif
 
 namespace irr {
-
-    ///Mutex type defines.
-    enum EMutexType{
-        ///Recursive mutex, that is, the same mutex can be 
-        /// locked multiple times by the same thread (but, of course,
-        /// not by other threads).
-        EMT_RECURSIVE,
-
-        ///Not recursive mutex, but more faster than recursive mutex.
-        EMT_NO_RECURSIVE
-    };
-
 
     /**
     *@class CMutex

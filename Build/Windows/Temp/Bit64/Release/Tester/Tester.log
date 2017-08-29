@@ -1,13 +1,25 @@
-﻿Build started 2017/8/15 11:35:06.
-     1>Project "F:\Temp\AntThread\Build\Windows\Tester\Tester.vcxproj" on node 2 (ClCompile target(s)).
+﻿Build started 2017/8/18 11:24:15.
+     1>Project "F:\Temp\AntThread\Build\Windows\Tester\Tester.vcxproj" on node 2 (build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(298,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
-     1>ClCompile:
+     1>InitializeBuildStatus:
+         Creating "F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Tester\Tester.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
          D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\Include /I..\..\..\Include\Net /I..\..\..\Include\Public /I..\..\..\Include\Thread /I..\..\..\Source /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN64 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Tester\\" /Fd"F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Tester\vc100.pdb" /Gd /TP /errorReport:prompt ..\..\..\Source\Test\App.cpp
          App.cpp
-     1>..\..\..\Source\Test\App.cpp(33): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>..\..\..\Source\Test\App.cpp(34): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(304) : see declaration of 'scanf'
-     1>Done Building Project "F:\Temp\AntThread\Build\Windows\Tester\Tester.vcxproj" (ClCompile target(s)).
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Temp\AntThread\Build\Windows\..\..\Bin\Tester-64.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\..\..\Lib\Bit64\Windows kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Tester\Tester-64.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"F:\Temp\AntThread\Bin\Tester-64.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Temp\AntThread\Build\Windows\..\..\Bin\Tester-64.lib" /MACHINE:X64 F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Tester\App.obj
+         Generating code
+         Finished generating code
+         Tester.vcxproj -> F:\Temp\AntThread\Build\Windows\..\..\Bin\Tester-64.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"F:\Temp\AntThread\Build\Windows\..\..\Bin\Tester-64.exe;#1" /manifest "F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Tester\Tester-64.exe.intermediate.manifest"
+       FinalizeBuildStatus:
+         Deleting file "F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Tester\Tester.unsuccessfulbuild".
+         Touching "F:\Temp\AntThread\Build\Windows\Temp\Bit64\Release\Tester\Tester.lastbuildstate".
+     1>Done Building Project "F:\Temp\AntThread\Build\Windows\Tester\Tester.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.48
+Time Elapsed 00:00:01.20

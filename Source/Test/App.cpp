@@ -4,6 +4,7 @@
 #include "IRunnable.h"
 #include "CThread.h"
 #include "CThreadPool.h"
+#include "CProcessManager.h"
 
 
 #if defined(APP_PLATFORM_WINDOWS)
@@ -41,7 +42,7 @@ namespace irr{
         virtual void run(){
             CThread* td = CThread::getCurrentThread();
             printf("CWorker.start::thread id = %u\n", td->getID());
-            CThread::sleep(5000);
+            CThread::sleep(1000);
             printf("CWorker.stop::thread id = %u\n", td->getID());
         }
     };
@@ -58,24 +59,19 @@ namespace irr{
     //for thread test
     void AppStartThreads(){
         const u32 max = 3;
-        CThread* allthread[max];
+        CThread* td;
         CWorker wk;
-        for(u32 i=0; i<max; ++i){
-            allthread[i] = new CThread();
-            allthread[i]->start(wk);
-        }
-
-        for(u32 i=0; i<max; ++i){
-            allthread[i]->join();
-        }
-
+        td = new CThread();
+        td->start(wk);
+        td->join();
+        delete td;
 
         CThreadPool pool(max);
         pool.start();
-        for(u32 i=0; i<max; ++i){
+        for(u32 i=0; i<4; ++i){
             pool.start(&wk);
         }
-        for(u32 i=0; i<max; ++i){
+        for(u32 i=0; i<4; ++i){
             pool.start(AppWorker, 0);
         }
         pool.stop();
@@ -83,11 +79,28 @@ namespace irr{
         AppQuit();
     }
 
+
+
+    //test process
+    void AppStartProcesses(){
+        CProcessManager::DProcessParam params;
+        //params.push_back(io::path("f:\\test.txt"));
+        CProcessHandle* proc = CProcessManager::launch("/usr/bin/gnome-calculator", params);
+        if(proc){
+            printf("AppStartProcesses success\n");
+            proc->wait();
+        }else{
+            printf("AppStartProcesses failed\n");
+        }
+        AppQuit();
+    }
+
 }//namespace irr
 
 
 int main(int argc, char** argv) {
-    irr::AppStartThreads();
-    printf("@Test quit success.\n"); 
+    //irr::AppStartThreads();
+    irr::AppStartProcesses();
+    printf("@Test quit success.\n");
     return 0;
 }//main

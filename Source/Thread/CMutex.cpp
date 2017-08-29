@@ -66,7 +66,8 @@ namespace irr {
 			break;
 		}
 		if (pthread_mutex_init(&mMutex, &attr))	{
-			//("cannot create mutex");		}
+			//("cannot create mutex");
+		}
 		pthread_mutexattr_destroy(&attr);
 	}
 

@@ -11,7 +11,7 @@
 #include "HConfig.h"
 #include "irrTypes.h"
 
-#if defined(APP_PLATFORM_LINUX)
+#if defined(APP_PLATFORM_LINUX) || defined(APP_PLATFORM_ANDROID)
 #include <pthread.h>
 #include <errno.h>
 #endif
@@ -31,12 +31,27 @@ namespace irr {
     class  CThreadEvent {
     public:
         /**
+        *@brief Constructor
+        *@note User must init or open the event before use.
+        */
+        CThreadEvent();
+
+        /**
         *@brief Creates an event. 
         *@param iName Event name.
-        *@parma autoReset The event is automatically reset after
+        *@param autoReset The event is automatically reset after
         * a wait() successfully returns if ture, else not reset.
+        *@return true if success, else false.
         */
-        CThreadEvent(fschar_t* iName = 0, bool autoReset = true);
+        bool init(const fschar_t* iName, bool autoReset);
+
+        /**
+        *@brief Open an existing event. 
+        *@param iName Event name.
+        *@param inherit The inheritance option of event.
+        *@return true if success, else false.
+        */
+        bool open(const fschar_t* iName, bool inherit);
 
 
         /// Destructor
@@ -74,7 +89,7 @@ namespace irr {
 
 #if defined(APP_PLATFORM_WINDOWS)
         void* mHandle;
-#elif defined(APP_PLATFORM_LINUX)
+#elif defined(APP_PLATFORM_LINUX) || defined(APP_PLATFORM_ANDROID)
         volatile bool   mStatus;
         bool            mAutoReset;
         pthread_cond_t mCond;

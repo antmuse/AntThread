@@ -1,7 +1,7 @@
 ﻿#include "CThreadEvent.h"
 #if defined(APP_PLATFORM_WINDOWS)
 #include <windows.h>
-#elif defined(APP_PLATFORM_LINUX)
+#elif defined(APP_PLATFORM_LINUX) || defined(APP_PLATFORM_ANDROID)
 //
 #endif
 
@@ -9,13 +9,24 @@ namespace irr {
 
 
 #if defined(APP_PLATFORM_WINDOWS)
+    CThreadEvent::CThreadEvent() : mHandle(0){
+    }
 
-	CThreadEvent::CThreadEvent(fschar_t* iName/* = 0*/, bool autoReset/* = true*/){
-		mHandle = CreateEvent(NULL, autoReset ? FALSE : TRUE, FALSE, iName);
-		if (!mHandle){
-			//("cannot create event");
-		}
+
+    bool CThreadEvent::open(const fschar_t* iName, bool inherit){
+        if(0 == mHandle){
+            mHandle = OpenEvent(EVENT_ALL_ACCESS, inherit, iName);
+        }
+        return 0!=mHandle;
 	}
+
+
+    bool CThreadEvent::init(const fschar_t* iName, bool autoReset){
+        if(0 == mHandle){
+            mHandle = CreateEvent(NULL, autoReset ? FALSE : TRUE, FALSE, iName);
+        }
+        return 0!=mHandle;
+    }
 
 
 	CThreadEvent::~CThreadEvent(){
@@ -24,15 +35,15 @@ namespace irr {
 
 
 	void CThreadEvent::set(){
-		if (!SetEvent(mHandle))	{
-			//throw SystemException("cannot signal event");
+		if (0 == SetEvent(mHandle))	{
+			//printf("cannot signal event");
 		}
 	}
 
 
 	void  CThreadEvent::reset(){
-		if (!ResetEvent(mHandle))	{
-			//throw SystemException("cannot reset event");
+		if (0 == ResetEvent(mHandle))	{
+			//printf("cannot reset event");
 		}
 	}
 
@@ -42,7 +53,7 @@ namespace irr {
 		case WAIT_OBJECT_0:
 			return true;
 		default:
-			break;//throw SystemException("wait for event failed");
+			break;//printf("wait for event failed");
 		}
 		return false;
 	}
@@ -55,7 +66,7 @@ namespace irr {
 		case WAIT_OBJECT_0:
 			return true;
 		default:
-			break; //throw SystemException("wait for event failed");		
+			break; //printf("wait for event failed");
 		}
 		return false;
 	}
@@ -63,28 +74,45 @@ namespace irr {
 
 
 
-#elif defined(APP_PLATFORM_LINUX)
+#elif defined(APP_PLATFORM_LINUX) || defined(APP_PLATFORM_ANDROID)
+	CThreadEvent::CThreadEvent() : mStatus(false), mAutoReset(true){
+	}
 
-	CThreadEvent::CThreadEvent(fschar_t* iName/* = 0*/, bool autoReset/* = true*/) : mAutoReset(autoReset), mStatus(false) {
-		if (pthread_mutex_init(&mMutex, NULL)){
-			// SystemException("cannot create event (mutex)");
+
+	bool CThreadEvent::open(const fschar_t* iName, bool inherit){
+        //TODO
+		return true;
+	}
+
+
+	bool CThreadEvent::init(const fschar_t* iName, bool autoReset){
+        mAutoReset = autoReset;
+        pthread_mutexattr_t mutexattr;
+        pthread_mutexattr_init(&mutexattr);
+        pthread_mutexattr_setpshared(&mutexattr, PTHREAD_PROCESS_SHARED);
+		if (pthread_mutex_init(&mMutex, &mutexattr)){
+            pthread_mutexattr_destroy(&mutexattr);
+			return false;// printf("cannot create event (mutex)");
 		}
+
+        pthread_mutexattr_destroy(&mutexattr);
+
 		pthread_condattr_t attr;
 		if (pthread_condattr_init(&attr))	{
 			pthread_mutex_destroy(&mMutex);
-			// SystemException("cannot create event (condition attribute)");
+            return false;// printf("cannot create event (condition attribute)");
 		}
 		if (pthread_condattr_setclock(&attr, CLOCK_MONOTONIC))   {
 			pthread_condattr_destroy(&attr);
 			pthread_mutex_destroy(&mMutex);
-			// SystemException("cannot create event (condition attribute clock)");
+            return false;// printf("cannot create event (condition attribute clock)");
 		}
 		if (pthread_cond_init(&mCond, &attr))	{
 			pthread_condattr_destroy(&attr);
 			pthread_mutex_destroy(&mMutex);
-			// SystemException("cannot create event (condition)");
+            return false;// printf("cannot create event (condition)");
 		}
-		pthread_condattr_destroy(&attr);
+		return true;
 	}
 
 
@@ -96,12 +124,11 @@ namespace irr {
 
 	void CThreadEvent::set(){
 		if (pthread_mutex_lock(&mMutex)){
-			// SystemException("cannot signal event (lock)");
+			//("cannot signal event (lock)");
 		}
 		mStatus = true;
 		if (pthread_cond_broadcast(&mCond))	{
-			pthread_mutex_unlock(&mMutex);
-			// SystemException("cannot signal event");
+			//("cannot signal event");
 		}
 		pthread_mutex_unlock(&mMutex);
 	}
@@ -109,7 +136,7 @@ namespace irr {
 
 	void  CThreadEvent::reset(){
 		if (pthread_mutex_lock(&mMutex)){
-			// SystemException("cannot reset event");
+			//("cannot reset event");
 		}
 		mStatus = false;
 		pthread_mutex_unlock(&mMutex);
@@ -118,12 +145,12 @@ namespace irr {
 
 	bool CThreadEvent::wait(){
 		if (pthread_mutex_lock(&mMutex)){
-			// SystemException("wait for event failed (lock)");
+			//("wait for event failed (lock)");
 		}
-		while (!mStatus) 	{
+		while (!mStatus) {
 			if (pthread_cond_wait(&mCond, &mMutex))	{
 				pthread_mutex_unlock(&mMutex);
-				// SystemException("wait for event failed");
+				//("wait for event failed");
 			}
 		}
 		if (mAutoReset){
@@ -143,6 +170,7 @@ namespace irr {
 			abstime.tv_nsec -= 1000000000;
 			abstime.tv_sec++;
 		}
+
 #if 0
 		struct timeval tv;
 		gettimeofday(&tv, NULL);
@@ -156,13 +184,13 @@ namespace irr {
 
 
 		if (pthread_mutex_lock(&mMutex) != 0){
-			// SystemException("wait for event failed (lock)");
+			// ("wait for event failed (lock)");
 		}
-		while (!mStatus) 	{
+		while (!mStatus) {
 			if ((rc = pthread_cond_timedwait(&mCond, &mMutex, &abstime)))	{
 				if (rc == ETIMEDOUT) break;
 				pthread_mutex_unlock(&mMutex);
-				// SystemException("cannot wait for event");
+				// printf("cannot wait for event");
 			}
 		}
 		if (rc == 0 && mAutoReset){

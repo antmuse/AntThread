@@ -37,19 +37,18 @@ namespace irr {
 
 
 	CThread::CThread(): mID(getUniqueID()), 
-		mEvent(0,true),
 		mRunnableTarget(0),
 		mThread(0),
 		mThreadID(0),
 		mPriority(PRIO_NORMAL),
 		mPolicy(POLICY_DEFAULT),
 		mStackSize(APP_THREAD_STACK_SIZE){
+            mEvent.init(0, true);
 			makeName();
 	}
 
 
 	CThread::CThread(const core::stringc& name) : mID(getUniqueID()), 
-		mEvent(0,true),
 		mRunnableTarget(0),
 		mThread(0),
 		mThreadID(0),
@@ -57,6 +56,8 @@ namespace irr {
 		mPolicy(POLICY_DEFAULT),
 		mStackSize(APP_THREAD_STACK_SIZE),
 		mName(name){
+
+		mEvent.init(0,true);
 	}
 
 
@@ -70,9 +71,9 @@ namespace irr {
 	void CThread::setPriority(EThreadPriority iPriority){
 		if (iPriority != mPriority){
 			mPriority = iPriority;
-			if (mThread)	{
-				if (SetThreadPriority(mThread, mPriority) == 0){
-					//throw SystemException("cannot set thread priority");
+			if (mThread) {
+				if (0 == SetThreadPriority(mThread, mPriority)){
+					//printf("cannot set thread priority");
 				}
 			}
 		}
@@ -81,7 +82,7 @@ namespace irr {
 
 	void CThread::start(IRunnable& target){
 		if (isRunning()){
-			return;  //throw SystemException("thread already running");
+			return;  //printf("thread already running");
 		}
 		mRunnableTarget = &target;
 		createThread(runnableEntry, this);
@@ -90,7 +91,7 @@ namespace irr {
 
 	void CThread::start(AppCallable iTarget, void* iData){
 		if (isRunning()){
-			return; //throw SystemException("thread already running");
+			return; //printf("thread already running");
 		}
 		threadCleanup();
 		mCallbackTarget.mCallback = iTarget;
@@ -108,10 +109,10 @@ namespace irr {
 		mThreadID = static_cast<DWORD>(threadId);
 #endif
 		if (!mThread){
-			//throw SystemException("cannot create thread");
+			//printf("cannot create thread");
 		}
 		if (mPriority != PRIO_NORMAL && !SetThreadPriority(mThread, mPriority)){
-			//throw SystemException("cannot set thread priority");
+			//printf("cannot set thread priority");
 		}
 	}
 
@@ -125,7 +126,7 @@ namespace irr {
 			threadCleanup();
 			return;
 		default:
-			//throw SystemException("cannot join thread");
+			//printf("cannot join thread");
 			return;
 		}
 	}
@@ -142,7 +143,7 @@ namespace irr {
 			threadCleanup();
 			return true;
 		default:
-			//throw SystemException("cannot join thread");
+			//printf("cannot join thread");
 			return false;
 		}
 	}
@@ -242,23 +243,24 @@ namespace irr {
 
 
 	CThread::CThread() : mID(getUniqueID()),
-		mEvent(0,true),
 		mRunnableTarget(0),
 		mThreadID(0),
 		mPriority(PRIO_NORMAL),
 		mPolicy(POLICY_DEFAULT),
 		mStackSize(APP_THREAD_STACK_SIZE) {
 			makeName();
+		mEvent.init(0,true);
 	}
 
 	CThread::CThread(const core::stringc& name) : mID(getUniqueID()),
-		mEvent(0,true),
 		mRunnableTarget(0),
 		mThreadID(0),
 		mPriority(PRIO_NORMAL),
 		mPolicy(POLICY_DEFAULT),
 		mStackSize(APP_THREAD_STACK_SIZE),
 		mName(name){
+
+		mEvent.init(0,true);
 	}
 
 	CThread::~CThread(){
@@ -284,7 +286,7 @@ namespace irr {
 				struct sched_param par;
 				par.sched_priority = mapPrio(mPriority, SCHED_OTHER);
 				if (pthread_setschedparam(mThreadID, SCHED_OTHER, &par)){
-					//throw SystemException("cannot set thread priority");
+					//printf("cannot set thread priority");
 				}
 			}
 		}
@@ -303,7 +305,7 @@ namespace irr {
 
 	void CThread::start(IRunnable& target){
 		if (mRunnableTarget){
-			//throw SystemException("thread already running");
+			//printf("thread already running");
 			return;
 		}
 		pthread_attr_t attributes;
@@ -312,7 +314,7 @@ namespace irr {
 		if (mStackSize != 0){
 			if (0 != pthread_attr_setstacksize(&attributes, mStackSize))	{
 				pthread_attr_destroy(&attributes);	
-				//throw SystemException("cannot set thread stack size");
+				//printf("cannot set thread stack size");
 			}
 		}
 
@@ -320,7 +322,7 @@ namespace irr {
 		if (pthread_create(&mThreadID, &attributes, runnableEntry, this)){
 			mRunnableTarget = 0;
 			pthread_attr_destroy(&attributes);	
-			//throw SystemException("cannot start thread");
+			//printf("cannot start thread");
 		}
 		pthread_attr_destroy(&attributes);
 
@@ -329,14 +331,14 @@ namespace irr {
 				struct sched_param par;
 				par.sched_priority = mapPrio(mPriority, SCHED_OTHER);
 				if (pthread_setschedparam(mThreadID, SCHED_OTHER, &par)){
-					//throw SystemException("cannot set thread priority");
+					//printf("cannot set thread priority");
 				}
 			}
 		}else{
 			struct sched_param par;
 			par.sched_priority = mapPrio(mPriority, mPolicy);
 			if (pthread_setschedparam(mThreadID, mPolicy, &par)){
-				//throw SystemException("cannot set thread priority");
+				//printf("cannot set thread priority");
 			}
 		}
 	}
@@ -344,7 +346,7 @@ namespace irr {
 
 	void CThread::start(AppCallable target, void* pData){
 		if (mCallbackTarget.mCallback){
-			//throw SystemException("thread already running");
+			//printf("thread already running");
 			return;
 		}
 		pthread_attr_t attributes;
@@ -352,7 +354,7 @@ namespace irr {
 
 		if (mStackSize != 0)	{
 			if (0 != pthread_attr_setstacksize(&attributes, mStackSize)){
-				//throw SystemException("can not set thread stack size");
+				//printf("can not set thread stack size");
 			}
 		}
 
@@ -362,7 +364,7 @@ namespace irr {
 		if (pthread_create(&mThreadID, &attributes, callableEntry, this)){
 			mCallbackTarget.mCallback = 0;
 			mCallbackTarget.mData = 0;
-			//throw SystemException("cannot start thread");
+			//printf("cannot start thread");
 		}
 
 		if (mPolicy == SCHED_OTHER){
@@ -370,14 +372,14 @@ namespace irr {
 				struct sched_param par;
 				par.sched_priority = mapPrio(mPriority, SCHED_OTHER);
 				if (pthread_setschedparam(mThreadID, SCHED_OTHER, &par)){
-					//throw SystemException("cannot set thread priority");
+					//printf("cannot set thread priority");
 				}
 			}
 		}else{
 			struct sched_param par;
 			par.sched_priority = mPriority;
 			if (pthread_setschedparam(mThreadID, mPolicy, &par)){
-				//throw SystemException("cannot set thread priority");
+				//printf("cannot set thread priority");
 			}
 		}
 	}
@@ -387,7 +389,7 @@ namespace irr {
 		//mEvent.wait();
 		void* result;
 		if (pthread_join(mThreadID, &result)){
-			//throw SystemException("cannot join thread"); 
+			//printf("cannot join thread"); 
 		}
 	}
 
@@ -396,7 +398,7 @@ namespace irr {
 		if (mEvent.wait(milliseconds)){
 			void* result;
 			if (pthread_join(mThreadID, &result)){
-				//throw SystemException("cannot join thread");
+				//printf("cannot join thread");
 			}
 			return true;
 		} else {
@@ -429,7 +431,7 @@ namespace irr {
 				if(errno == EINTR)	{
 					ts = leftover;
 				}else{
-					//throw SystemException("CThread::sleep(): nanosleep() failed");
+					//printf("CThread::sleep(): nanosleep() failed");
 					break;
 				}
 			}
@@ -454,7 +456,7 @@ namespace irr {
 			}
 		}while (remainingTime > 0 && rc < 0 && errno == EINTR);
 		if (rc < 0 && remainingTime > 0){
-			//throw SystemException("CThread::sleep(): select() failed");
+			//printf("CThread::sleep(): select() failed");
 		}
 #endif
 	}

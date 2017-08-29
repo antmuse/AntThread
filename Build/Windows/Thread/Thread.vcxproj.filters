@@ -72,6 +72,36 @@
     <ClInclude Include="..\..\..\Include\Public\IAppLogger.h">
       <Filter>Include\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Include\Public\IReferenceCounted.h">
+      <Filter>Include\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Include\Public\irrMap.h">
+      <Filter>Include\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Include\Thread\CNamedMutex.h">
+      <Filter>Include\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Include\Thread\CPipe.h">
+      <Filter>Include\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Include\Thread\CProcessHandle.h">
+      <Filter>Include\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Include\Thread\CProcessManager.h">
+      <Filter>Include\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Include\Thread\CReadWriteLock.h">
+      <Filter>Include\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Include\Thread\CSemaphore.h">
+      <Filter>Include\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Include\Thread\HMutexType.h">
+      <Filter>Include\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Include\Public\path.h">
+      <Filter>Include\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Source\Thread\CMutex.cpp">
@@ -88,6 +118,24 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Source\Public\IAppLogger.cpp">
       <Filter>Source\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Thread\CNamedMutex.cpp">
+      <Filter>Source\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Thread\CPipe.cpp">
+      <Filter>Source\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Thread\CProcessHandle.cpp">
+      <Filter>Source\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Thread\CProcessManager.cpp">
+      <Filter>Source\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Thread\CReadWriteLock.cpp">
+      <Filter>Source\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Thread\CSemaphore.cpp">
+      <Filter>Source\Thread</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

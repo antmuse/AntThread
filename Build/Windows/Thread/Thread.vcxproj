@@ -174,20 +174,36 @@
     <ClInclude Include="..\..\..\Include\irrTypes.h" />
     <ClInclude Include="..\..\..\Include\Public\heapsort.h" />
     <ClInclude Include="..\..\..\Include\Public\IAppLogger.h" />
+    <ClInclude Include="..\..\..\Include\Public\IReferenceCounted.h" />
     <ClInclude Include="..\..\..\Include\Public\irrAllocator.h" />
     <ClInclude Include="..\..\..\Include\Public\irrArray.h" />
     <ClInclude Include="..\..\..\Include\Public\irrList.h" />
+    <ClInclude Include="..\..\..\Include\Public\irrMap.h" />
     <ClInclude Include="..\..\..\Include\Public\irrMath.h" />
     <ClInclude Include="..\..\..\Include\Public\irrString.h" />
+    <ClInclude Include="..\..\..\Include\Public\path.h" />
     <ClInclude Include="..\..\..\Include\Thread\CMutex.h" />
+    <ClInclude Include="..\..\..\Include\Thread\CNamedMutex.h" />
+    <ClInclude Include="..\..\..\Include\Thread\CPipe.h" />
+    <ClInclude Include="..\..\..\Include\Thread\CProcessHandle.h" />
+    <ClInclude Include="..\..\..\Include\Thread\CProcessManager.h" />
+    <ClInclude Include="..\..\..\Include\Thread\CReadWriteLock.h" />
+    <ClInclude Include="..\..\..\Include\Thread\CSemaphore.h" />
     <ClInclude Include="..\..\..\Include\Thread\CThread.h" />
     <ClInclude Include="..\..\..\Include\Thread\CThreadEvent.h" />
     <ClInclude Include="..\..\..\Include\Thread\CThreadPool.h" />
+    <ClInclude Include="..\..\..\Include\Thread\HMutexType.h" />
     <ClInclude Include="..\..\..\Include\Thread\IRunnable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Source\Public\IAppLogger.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CMutex.cpp" />
+    <ClCompile Include="..\..\..\Source\Thread\CNamedMutex.cpp" />
+    <ClCompile Include="..\..\..\Source\Thread\CPipe.cpp" />
+    <ClCompile Include="..\..\..\Source\Thread\CProcessHandle.cpp" />
+    <ClCompile Include="..\..\..\Source\Thread\CProcessManager.cpp" />
+    <ClCompile Include="..\..\..\Source\Thread\CReadWriteLock.cpp" />
+    <ClCompile Include="..\..\..\Source\Thread\CSemaphore.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CThread.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CThreadEvent.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CThreadPool.cpp" />
