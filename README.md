@@ -1,4 +1,4 @@
-AntThread V1.0.0.0
+AntThread V1.0.0.1
 ====
 A cross platform thread lib, current for Windows&amp;Linux(It's easy to port to Andriod platform).
 # Usage
