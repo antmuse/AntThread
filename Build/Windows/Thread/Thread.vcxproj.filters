@@ -137,5 +137,11 @@
     <ClCompile Include="..\..\..\Source\Thread\CSemaphore.cpp">
       <Filter>Source\Thread</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Source\Thread\CAtomicValue32.cpp">
+      <Filter>Source\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Thread\HAtomicOperator.cpp">
+      <Filter>Source\Thread</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

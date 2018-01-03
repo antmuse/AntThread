@@ -19,83 +19,83 @@
 namespace irr {
 
 
+/**
+*@class CThreadEvent
+*@brief An CThreadEvent is a synchronization object that
+* allows one thread to signal one or more
+* other threads that a certain event has happened.
+* Usually, one thread signals an event,
+* while one or more other threads wait
+* for an event to become signalled.
+*/
+class  CThreadEvent {
+public:
     /**
-    *@class CThreadEvent
-    *@brief An CThreadEvent is a synchronization object that
-    * allows one thread to signal one or more
-    * other threads that a certain event has happened.
-    * Usually, one thread signals an event,
-    * while one or more other threads wait
-    * for an event to become signalled.
+    *@brief Constructor
+    *@note User must init or open the event before use.
     */
-    class  CThreadEvent {
-    public:
-        /**
-        *@brief Constructor
-        *@note User must init or open the event before use.
-        */
-        CThreadEvent();
+    CThreadEvent();
 
-        /**
-        *@brief Creates an event. 
-        *@param iName Event name.
-        *@param autoReset The event is automatically reset after
-        * a wait() successfully returns if ture, else not reset.
-        *@return true if success, else false.
-        */
-        bool init(const fschar_t* iName, bool autoReset);
+    /**
+    *@brief Creates an event.
+    *@param iName Event name.
+    *@param autoReset The event is automatically reset after
+    * a wait() successfully returns if ture, else not reset.
+    *@return true if success, else false.
+    */
+    bool init(const fschar_t* iName, bool autoReset);
 
-        /**
-        *@brief Open an existing event. 
-        *@param iName Event name.
-        *@param inherit The inheritance option of event.
-        *@return true if success, else false.
-        */
-        bool open(const fschar_t* iName, bool inherit);
+    /**
+    *@brief Open an existing event.
+    *@param iName Event name.
+    *@param inherit The inheritance option of event.
+    *@return true if success, else false.
+    */
+    bool open(const fschar_t* iName, bool inherit);
 
 
-        /// Destructor
-        ~CThreadEvent();
+    /// Destructor
+    ~CThreadEvent();
 
-        /**
-        *@brief Signals the event. If autoReset is true,
-        * only one thread waiting for the event 
-        * can resume execution.
-        * If autoReset is false, all waiting threads can resume execution.
-        */
-        void set();
+    /**
+    *@brief Signals the event. If autoReset is true,
+    * only one thread waiting for the event
+    * can resume execution.
+    * If autoReset is false, all waiting threads can resume execution.
+    */
+    void set();
 
-        /// Resets the event to unsignalled state.
-        void reset();
+    /// Resets the event to unsignalled state.
+    void reset();
 
-        /// Waits for the event to become signalled.
-        bool wait();
+    /// Waits for the event to become signalled.
+    bool wait();
 
-        /**
-        *@brief  Waits for the event to become signalled.
-        *@parma milliseconds Wait time in millisecond.
-        *@return false if the event does not become signalled within the specified time interval,
-        * else true.
-        */
-        bool wait(long milliseconds);
-
-
-        //bool tryWait(long milliseconds);
+    /**
+    *@brief  Waits for the event to become signalled.
+    *@parma milliseconds Wait time in millisecond.
+    *@return false if the event does not become signalled within the specified time interval,
+    * else true.
+    */
+    bool wait(long milliseconds);
 
 
-    private:
-        CThreadEvent(const CThreadEvent&);
-        CThreadEvent& operator = (const CThreadEvent&);
+    //bool tryWait(long milliseconds);
+
+
+private:
+    CThreadEvent(const CThreadEvent&);
+    CThreadEvent& operator = (const CThreadEvent&);
 
 #if defined(APP_PLATFORM_WINDOWS)
-        void* mHandle;
+    void* mHandle;
 #elif defined(APP_PLATFORM_LINUX) || defined(APP_PLATFORM_ANDROID)
-        volatile bool   mStatus;
-        bool            mAutoReset;
-        pthread_cond_t mCond;
-        pthread_mutex_t mMutex;
+    volatile bool   mStatus;
+    bool            mAutoReset;
+    pthread_cond_t mCond;
+    pthread_mutex_t mMutex;
 #endif
-    };
+};
 
 
 } //end namespace irr

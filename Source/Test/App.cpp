@@ -103,7 +103,7 @@ namespace irr{
 
 
 int main(int argc, char** argv) {
-    //irr::AppStartThreads();
+    irr::AppStartThreads();
     irr::AppStartProcesses();
     printf("@Test quit success.\n");
     return 0;

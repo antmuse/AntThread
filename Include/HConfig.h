@@ -30,6 +30,9 @@
 
 #if defined(_DEBUG)  || defined(DEBUG)
 #define APP_DEBUG
+
+//include file "HMemoryLeakCheck.h" in .cpp
+//#define APP_CHECK_MEM_LEAK
 #else
 #define APP_RELEASE
 #endif
@@ -55,11 +58,11 @@
 #endif  //Define byte order
 
 
-
-
 #define _IRR_STATIC_LIB_
 
 #if defined(APP_PLATFORM_WINDOWS)
+#define APP_ALIGN(N) __declspec(align(N))
+
 #ifndef _IRR_STATIC_LIB_
 #ifdef IRRLICHT_EXPORTS
 #define IRRLICHT_API __declspec(dllexport)
@@ -80,7 +83,9 @@
 #endif //APP_PLATFORM_WINDOWS
 
 
-#if defined(APP_PLATFORM_LINUX)
+#if defined(APP_PLATFORM_LINUX) || defined(APP_PLATFORM_ANDROID)
+#define APP_ALIGN(N) __attribute__((__aligned__((N))))
+
 #ifndef _IRR_STATIC_LIB_
 #ifdef IRRLICHT_EXPORTS
 #define IRRLICHT_API
@@ -98,12 +103,16 @@
 #define IRRCALLCONV
 #endif // STDCALL_SUPPORTED
 
-#endif //APP_PLATFORM_LINUX
+#endif //APP_PLATFORM_LINUX, APP_PLATFORM_ANDROID
+
+
+
+#define __IRR_HAS_S64
 
 
 //! define a break macro for debugging.
 #include "assert.h"
-#define APP_ASSERT( _CONDITION_ ) assert(_CONDITION_);
+#define APP_ASSERT(_CONDITION_) assert(_CONDITION_)
 
 
 #if defined(UNICODE)
