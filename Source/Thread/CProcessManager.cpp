@@ -180,7 +180,7 @@ CProcessHandle* CProcessManager::launch(const io::path& command, const DProcessP
     startupInfo.cbReserved2 = 0;
     startupInfo.lpReserved2 = NULL;
 
-    HANDLE hProc = GetCurrentProcess();
+    HANDLE hProc = ::GetCurrentProcess();
     bool mustInheritHandles = false;
     if(inPipe) {
         ::DuplicateHandle(hProc, inPipe->getReadHandle(), hProc, &startupInfo.hStdInput, 0, TRUE, DUPLICATE_SAME_ACCESS);

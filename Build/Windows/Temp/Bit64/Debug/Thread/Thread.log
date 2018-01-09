@@ -1,20 +1,8 @@
 ﻿D:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(372,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
-  HAtomicOperator.cpp
   CThreadPool.cpp
-  CThreadEvent.cpp
-  CThread.cpp
-  CSemaphore.cpp
-  CReadWriteLock.cpp
-  CProcessManager.cpp
-  CProcessHandle.cpp
-  CPipe.cpp
-  CNamedMutex.cpp
-  CMutex.cpp
-e:\share\antthread\source\thread\cmutex.cpp(25): warning C4018: '<=': signed/unsigned mismatch
   CCondition.cpp
+  Generating Code...
+  Compiling...
   CAtomicValue32.cpp
-  IAppLogger.cpp
-e:\share\antthread\source\public\iapplogger.cpp(35): warning C4996: '_vsnwprintf': This function or variable may be unsafe. Consider using _vsnwprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\corecrt_wstdio.h(1122): note: see declaration of '_vsnwprintf'
   Generating Code...
   Thread.vcxproj -> E:\Share\AntThread\Build\Windows\..\..\Lib\Bit64\Windows\Thread-64D.lib

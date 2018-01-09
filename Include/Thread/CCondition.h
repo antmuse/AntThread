@@ -84,6 +84,7 @@ private:
     CONDITION_VARIABLE mCondition;
 #elif defined(APP_PLATFORM_LINUX) || defined(APP_PLATFORM_ANDROID)
     pthread_cond_t mCondition;
+    bool init();
 #endif
 };
 

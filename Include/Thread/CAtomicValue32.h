@@ -8,6 +8,7 @@
 #ifndef APP_CATOMICVALUE32_H
 #define APP_CATOMICVALUE32_H
 
+#include "HConfig.h"
 #include "irrTypes.h"
 
 namespace irr {
@@ -16,7 +17,7 @@ namespace irr {
 *@class CAtomicS32
 *@brief A 32bit atomic value.
 */
-APP_ALIGN(32) class CAtomicS32 {
+class APP_ALIGN(32) CAtomicS32 {
 public:
     CAtomicS32();
 

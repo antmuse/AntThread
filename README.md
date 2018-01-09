@@ -1,4 +1,4 @@
-AntThread V1.0.0.1
+AntThread V1.0.0.2
 ====
 A cross platform thread lib, current for Windows&amp;Linux&amp;Andriod.
 # Usage
@@ -30,9 +30,27 @@ void AppWorker(void* param){
     printf("AppWorker.stop::thread id = %u\n", td->getID());
 }
 
+//test process
+void AppStartProcesses() {
+    CProcessManager::DProcessParam params;
+#if defined(APP_PLATFORM_WINDOWS)
+    //params.push_back(io::path("f:\\test.txt"));
+    CProcessHandle* proc = CProcessManager::launch("notepad.exe", params);
+#else
+    CProcessHandle* proc = CProcessManager::launch("/usr/bin/gnome-calculator", params);
+#endif
+    if(proc) {
+        printf("AppStartProcesses success\n");
+        proc->wait();
+    } else {
+        printf("AppStartProcesses failed\n");
+    }
+}
 
-//for thread test
+
+//for thread & process test
 int main(int argc, char** argv){
+    //thread test
     CThread* thread;
     CWorker wk;
     thread = new CThread();
@@ -50,7 +68,13 @@ int main(int argc, char** argv){
     for(u32 i=0; i<max; ++i){
         pool.start(AppWorker, 0);
     }
-    pool.stop();
+    //pool.stop();
+    pool.join();
+
+
+
+    //process test
+    AppStartProcesses();
     return 0;
 }
 ```

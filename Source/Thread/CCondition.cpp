@@ -42,7 +42,7 @@ CCondition::CCondition() {
 }
 
 
-bool CCondition::init(bool super) {
+bool CCondition::init() {
     pthread_condattr_t attr;
     if(::pthread_condattr_init(&attr)) {
         return false;

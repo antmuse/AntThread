@@ -43,7 +43,9 @@ void CThreadPool::removeAll() {
 
 void CThreadPool::run() {
     IRunnable* iTask = 0;
-    SCallbackData iCallTask = {0, 0};
+    SCallbackData iCallTask;
+    iCallTask.mCallback = 0;
+    iCallTask.mData = 0;
     u32 leftover = 0; //leftover tasks
     mMutex.lock();
     ++mActiveCount;
@@ -112,8 +114,10 @@ void CThreadPool::stop() {
     mStatus = ESTATUS_STOPED;
     IAppLogger::log(ELOG_CRITICAL, "CThreadPool::stop", "[active=%u],[threads=%u],[tasks=%u]",
         mActiveCount,mThreadCount, mHoldTasks.size() + mHoldCallTasks.size());
-    CThread::sleep(100);
-    mCondition.notifyAll();
+    while(mActiveCount > 0) {
+        CThread::sleep(10);
+        mCondition.notifyAll();
+    }
     removeAll();
     IAppLogger::log(ELOG_CRITICAL, "CThreadPool::stop", "threads[%u], tasks[%u]", mThreadCount, mHoldTasks.size() + mHoldCallTasks.size());
 }
