@@ -87,7 +87,7 @@ public:
 
 private:
     CSemaphore(const CSemaphore&);
-    CSemaphore& operator = (const CSemaphore&);
+    CSemaphore& operator= (const CSemaphore&);
 
 #if defined(APP_PLATFORM_WINDOWS)
     void* mSema;    //HANDLE

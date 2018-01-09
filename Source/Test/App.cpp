@@ -5,6 +5,7 @@
 #include "CThread.h"
 #include "CThreadPool.h"
 #include "CProcessManager.h"
+#include "CAtomicValue32.h"
 
 
 #if defined(APP_PLATFORM_WINDOWS)
@@ -25,79 +26,80 @@
 
 
 
-namespace irr{
+namespace irr {
 
-    void AppQuit(){
-        c8 key = '\0';
-        while('*' != key){
-            printf("@Please input [*] to quit\n");
-            scanf("%c", &key);
-        }
+void AppQuit() {
+    c8 key = '\0';
+    while('*' != key) {
+        printf("@Please input [*] to quit\n");
+        scanf("%c", &key);
     }
+}
 
 
-    //for thread test
-    class CWorker : public IRunnable{
-    public:
-        virtual void run(){
-            CThread* td = CThread::getCurrentThread();
-            printf("CWorker.start::thread id = %u\n", td->getID());
-            CThread::sleep(1000);
-            printf("CWorker.stop::thread id = %u\n", td->getID());
-        }
-    };
-
-    //for thread test
-    void AppWorker(void* param){
+//for thread test
+class CWorker : public IRunnable {
+public:
+    virtual void run() {
         CThread* td = CThread::getCurrentThread();
-        printf("AppWorker.start::thread id = %u\n", td->getID());
-        CThread::sleep(5000);
-        printf("AppWorker.stop::thread id = %u\n", td->getID());
+        printf("CWorker::run>>thread id = %u\n", td->getID());
     }
+};
+
+//for thread test
+void AppWorker(void* param) {
+    CAtomicS32& count = *(CAtomicS32*) (param);
+    CThread* td = CThread::getCurrentThread();
+    printf("AppWorker::>>[thread=%u], [count=%d]\n", td->getID(), ++count);
+}
 
 
-    //for thread test
-    void AppStartThreads(){
-        const u32 max = 3;
-        CThread* td;
-        CWorker wk;
-        td = new CThread();
-        td->start(wk);
-        td->join();
-        delete td;
+//for thread test
+void AppStartThreads() {
+    CAtomicS32 count;
+    CThread* td;
+    CWorker wk;
+    td = new CThread();
+    td->start(wk);
+    td->join();
+    delete td;
+    printf("----------------------------------------\n");
 
-        CThreadPool pool(max);
-        pool.start();
-        for(u32 i=0; i<4; ++i){
-            pool.start(&wk);
-        }
-        for(u32 i=0; i<4; ++i){
-            pool.start(AppWorker, 0);
-        }
-        pool.stop();
-
-        AppQuit();
+    const u32 max = 111;
+    CThreadPool pool(9);
+    pool.start();
+    for(u32 i = 0; i < 10; ++i) {
+        pool.start(&wk);
     }
+    for(u32 i = 0; i < max; ++i) {
+        pool.start(AppWorker, (void*) (&count));
+    }
+    //AppQuit();
+    //pool.stop();
+    pool.join();
+    printf("AppStartThreads::>>[count=%d]\n", count.getValue());
+    AppQuit();
+}
 
 
 
-    //test process
-    void AppStartProcesses(){
-        CProcessManager::DProcessParam params;
+//test process
+void AppStartProcesses() {
+    CProcessManager::DProcessParam params;
 #if defined(APP_PLATFORM_WINDOWS)
-        //params.push_back(io::path("f:\\test.txt"));
-        CProcessHandle* proc = CProcessManager::launch("notepad.exe", params);
+    //params.push_back(io::path("f:\\test.txt"));
+    CProcessHandle* proc = CProcessManager::launch("notepad.exe", params);
 #else
-        CProcessHandle* proc = CProcessManager::launch("/usr/bin/gnome-calculator", params);
+    CProcessHandle* proc = CProcessManager::launch("/usr/bin/gnome-calculator", params);
 #endif
-        if(proc){
-            printf("AppStartProcesses success\n");
-            proc->wait();
-        }else{
-            printf("AppStartProcesses failed\n");
-        }
-        AppQuit();
+    if(proc) {
+        printf("AppStartProcesses success\n");
+        proc->wait();
+    } else {
+        printf("AppStartProcesses failed\n");
     }
+    AppQuit();
+}
 
 }//namespace irr
 

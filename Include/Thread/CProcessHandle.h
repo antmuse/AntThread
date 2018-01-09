@@ -58,12 +58,8 @@ public:
 private:
     CProcessHandle();
 
-    /// Prevent creates a CProcessHandle by copying another one.
     CProcessHandle(const CProcessHandle& it);
-
-    /// Prevent assigns an other process handle.
-    CProcessHandle& operator = (const CProcessHandle& it);
-
+    CProcessHandle& operator= (const CProcessHandle& it);
 
     PID mID;
 #if defined(APP_PLATFORM_WINDOWS)

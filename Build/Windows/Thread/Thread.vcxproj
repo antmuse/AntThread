@@ -203,6 +203,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Source\Public\IAppLogger.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CAtomicValue32.cpp" />
+    <ClCompile Include="..\..\..\Source\Thread\CCondition.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CMutex.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CNamedMutex.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CPipe.cpp" />

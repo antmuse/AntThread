@@ -113,7 +113,7 @@ void AppAtomicReadWriteBarrier() {
 }
 
 u32 AppAtomicFetchAdd(u32 addValue, u32* iTarget) {
-    return ::__sync_add_and_fetch(iTarget, addValue);
+    return ::__sync_fetch_and_add(iTarget, addValue);
 }
 
 

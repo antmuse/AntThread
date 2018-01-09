@@ -1,6 +1,7 @@
 e:\share\antthread\build\windows\temp\bit64\debug\thread\thread.pdb
 e:\share\antthread\build\windows\temp\bit64\debug\thread\thread.idb
 e:\share\antthread\build\windows\temp\bit64\debug\thread\iapplogger.obj
+e:\share\antthread\build\windows\temp\bit64\debug\thread\catomicvalue32.obj
 e:\share\antthread\build\windows\temp\bit64\debug\thread\cmutex.obj
 e:\share\antthread\build\windows\temp\bit64\debug\thread\cnamedmutex.obj
 e:\share\antthread\build\windows\temp\bit64\debug\thread\cpipe.obj
@@ -12,7 +13,7 @@ e:\share\antthread\build\windows\temp\bit64\debug\thread\cthread.obj
 e:\share\antthread\build\windows\temp\bit64\debug\thread\cthreadevent.obj
 e:\share\antthread\build\windows\temp\bit64\debug\thread\cthreadpool.obj
 e:\share\antthread\build\windows\temp\bit64\debug\thread\hatomicoperator.obj
-e:\share\antthread\build\windows\temp\bit64\debug\thread\catomicvalue32.obj
+e:\share\antthread\build\windows\temp\bit64\debug\thread\ccondition.obj
 e:\share\antthread\lib\bit64\windows\thread-64d.lib
 e:\share\antthread\build\windows\..\..\lib\bit64\windows\thread-64d.lib
 e:\share\antthread\build\windows\temp\bit64\debug\thread\thread.tlog\cl.command.1.tlog

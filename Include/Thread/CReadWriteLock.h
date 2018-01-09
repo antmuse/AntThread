@@ -12,7 +12,7 @@
 #include "irrTypes.h"
 
 #if defined(APP_PLATFORM_WINDOWS)
-#include <winsock2.h>   //just here to prevent <windock.h>
+#include <winsock2.h>   //just here to prevent <winsock.h>
 #include <Windows.h>
 #elif defined( APP_PLATFORM_ANDROID )  || defined( APP_PLATFORM_LINUX )
 #include <pthread.h>
@@ -68,8 +68,7 @@ public:
 
 private:
     CReadWriteLock(const CReadWriteLock&);
-
-    CReadWriteLock& operator = (const CReadWriteLock&);
+    CReadWriteLock& operator= (const CReadWriteLock&);
 
 #if defined(APP_PLATFORM_WINDOWS)
     SRWLOCK mLocker;

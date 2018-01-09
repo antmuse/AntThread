@@ -62,7 +62,7 @@ public:
     }
 
 protected:
-    mutable s32 mValue;
+    s32 mValue; //volatile
 };
 
 

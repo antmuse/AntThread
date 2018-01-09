@@ -123,47 +123,46 @@ CThreadEvent::~CThreadEvent() {
 
 
 void CThreadEvent::set() {
-    if(pthread_mutex_lock(&mMutex)) {
-        //("cannot signal event (lock)");
+    if(::pthread_mutex_lock(&mMutex)) {
+        return;
     }
     mStatus = true;
-    if(pthread_cond_broadcast(&mCond)) {
-        //("cannot signal event");
+    if(::pthread_cond_broadcast(&mCond)) {
+        return;
     }
-    pthread_mutex_unlock(&mMutex);
+    ::pthread_mutex_unlock(&mMutex);
 }
 
 
 void  CThreadEvent::reset() {
-    if(pthread_mutex_lock(&mMutex)) {
-        //("cannot reset event");
+    if(::pthread_mutex_lock(&mMutex)) {
+        return;
     }
     mStatus = false;
-    pthread_mutex_unlock(&mMutex);
+    ::pthread_mutex_unlock(&mMutex);
 }
 
 
 bool CThreadEvent::wait() {
-    if(pthread_mutex_lock(&mMutex)) {
-        //("wait for event failed (lock)");
+    if(::pthread_mutex_lock(&mMutex)) {
+        return false;
     }
     while(!mStatus) {
-        if(pthread_cond_wait(&mCond, &mMutex)) {
-            pthread_mutex_unlock(&mMutex);
-            //("wait for event failed");
+        if(::pthread_cond_wait(&mCond, &mMutex)) {
+            ::pthread_mutex_unlock(&mMutex);
         }
     }
     if(mAutoReset) {
         mStatus = false;
     }
-    pthread_mutex_unlock(&mMutex);
+    ::pthread_mutex_unlock(&mMutex);
 }
 
 
 bool CThreadEvent::wait(long milliseconds) {
     s32 rc = 0;
     struct timespec abstime;
-    clock_gettime(CLOCK_MONOTONIC, &abstime);
+    ::clock_gettime(CLOCK_MONOTONIC, &abstime);
     abstime.tv_sec += milliseconds / 1000;
     abstime.tv_nsec += (milliseconds % 1000) * 1000000;
     if(abstime.tv_nsec >= 1000000000) {
@@ -173,7 +172,7 @@ bool CThreadEvent::wait(long milliseconds) {
 
 #if 0
     struct timeval tv;
-    gettimeofday(&tv, NULL);
+    ::gettimeofday(&tv, NULL);
     abstime.tv_sec = tv.tv_sec + milliseconds / 1000;
     abstime.tv_nsec = tv.tv_usec * 1000 + (milliseconds % 1000) * 1000000;
     if(abstime.tv_nsec >= 1000000000) {
@@ -183,20 +182,20 @@ bool CThreadEvent::wait(long milliseconds) {
 #endif
 
 
-    if(pthread_mutex_lock(&mMutex) != 0) {
+    if(::pthread_mutex_lock(&mMutex) != 0) {
         // ("wait for event failed (lock)");
     }
     while(!mStatus) {
-        if((rc = pthread_cond_timedwait(&mCond, &mMutex, &abstime))) {
+        if((rc = ::pthread_cond_timedwait(&mCond, &mMutex, &abstime))) {
             if(rc == ETIMEDOUT) break;
-            pthread_mutex_unlock(&mMutex);
+            ::pthread_mutex_unlock(&mMutex);
             // printf("cannot wait for event");
         }
     }
     if(rc == 0 && mAutoReset) {
         mStatus = false;
     }
-    pthread_mutex_unlock(&mMutex);
+    ::pthread_mutex_unlock(&mMutex);
 
     return rc == 0;
 }

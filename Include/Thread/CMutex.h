@@ -13,9 +13,10 @@
 
 #include "HConfig.h"
 #include "HMutexType.h"
+#include "INoCopy.h"
 
 #if defined( APP_PLATFORM_WINDOWS )
-#include <winsock2.h>   //just here to prevent <windock.h>
+#include <winsock2.h>   //just here to prevent <winsock.h>
 #include <Windows.h>
 #endif
 #if defined( APP_PLATFORM_ANDROID )  || defined( APP_PLATFORM_LINUX )
@@ -34,7 +35,7 @@ namespace irr {
 * Using the CAutoLock class is the preferred way to automatically
 * lock and unlock a mutex.
 */
-class CMutex {
+class CMutex : public INoCopy {
 public:
 
     /**
@@ -82,6 +83,8 @@ public:
 
     /// Unlocks the mutex so that it can be acquired by	other threads.
     void unlock();
+
+    void* getHandle();
 
 
 private:

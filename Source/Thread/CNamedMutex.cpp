@@ -15,7 +15,6 @@ namespace irr {
 CNamedMutex::CNamedMutex(const io::path& iName, EMutexType type/* = EMT_RECURSIVE*/) : mMutex(0),
 mName(iName) {
     mMutex = ::CreateMutex(0, FALSE, mName.c_str());
-    /*if (!mMutex)  throw ("cannot create named mutex", mName);*/
 }
 
 

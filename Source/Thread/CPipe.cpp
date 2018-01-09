@@ -86,7 +86,7 @@ namespace irr {
 
 CPipe::CPipe() {
     s32 fds[2];
-    if(0 == pipe(fds)) {
+    if(0 == ::pipe(fds)) {
         mReadFD = fds[0];
         mWriteFD = fds[1];
     } else {
@@ -105,7 +105,7 @@ s32 CPipe::writeBytes(const void* buffer, s32 length) {
 
     s32 n;
     do {
-        n = write(mWriteFD, buffer, length);
+        n = ::write(mWriteFD, buffer, length);
     } while(n < 0 && errno == EINTR);
 
     if(n >= 0) {
@@ -121,7 +121,7 @@ s32 CPipe::readBytes(void* buffer, s32 length) {
 
     s32 n;
     do {
-        n = read(mReadFD, buffer, length);
+        n = ::read(mReadFD, buffer, length);
     } while(n < 0 && errno == EINTR);
 
     if(n >= 0) {
@@ -144,7 +144,7 @@ s32 CPipe::getWriteHandle() const {
 
 void CPipe::closeRead() {
     if(mReadFD != -1) {
-        close(mReadFD);
+        ::close(mReadFD);
         mReadFD = -1;
     }
 }
@@ -152,7 +152,7 @@ void CPipe::closeRead() {
 
 void CPipe::closeWrite() {
     if(mWriteFD != -1) {
-        close(mWriteFD);
+        ::close(mWriteFD);
         mWriteFD = -1;
     }
 }

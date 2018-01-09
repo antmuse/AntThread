@@ -32,13 +32,16 @@ void CMutex::lock() {
 }
 
 bool CMutex::tryLock() {
-    return ::TryEnterCriticalSection(&mCriticalSection) != 0;
+    return TRUE == ::TryEnterCriticalSection(&mCriticalSection);
 }
 
 void CMutex::unlock() {
     ::LeaveCriticalSection(&mCriticalSection);
 }
 
+void* CMutex::getHandle() {
+    return &mCriticalSection;
+}
 
 } //namespace irr
 
@@ -74,6 +77,10 @@ CMutex::CMutex(EMutexType type/* = EMT_RECURSIVE*/) {
 
 CMutex::~CMutex() {
     pthread_mutex_destroy(&mMutex);
+}
+
+void* CMutex::getHandle() {
+    return &mMutex;
 }
 
 

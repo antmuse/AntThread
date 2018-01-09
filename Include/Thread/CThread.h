@@ -11,6 +11,7 @@
 #include "HConfig.h"
 //#include "IThread.h"
 #include "irrString.h"
+#include "INoCopy.h"
 #include "CMutex.h"
 #include "CThreadEvent.h"
 
