@@ -1,0 +1,130 @@
+# depslib dependency file v1.0
+1515492613 source:/media/sf_Share/AntThread/Source/Test/App.cpp
+	"HConfig.h"
+	"IAppLogger.h"
+	"IRunnable.h"
+	"CThread.h"
+	"CThreadPool.h"
+	"CProcessManager.h"
+	"CAtomicValue32.h"
+
+1514208687 /media/sf_Share/AntThread/Include/HConfig.h
+	"assert.h"
+
+1514944982 /media/sf_Share/AntThread/Include/Public/IAppLogger.h
+	"HConfig.h"
+	"irrTypes.h"
+
+1506304163 /media/sf_Share/AntThread/Include/irrTypes.h
+	"HConfig.h"
+	<wchar.h>
+	<crtdbg.h>
+	"assert.h"
+	<stdlib.h>
+	<crtdbg.h>
+
+1509865571 /media/sf_Share/AntThread/Include/Thread/IRunnable.h
+
+1515489559 /media/sf_Share/AntThread/Include/Thread/CThread.h
+	"HConfig.h"
+	"irrString.h"
+	"INoCopy.h"
+	"CMutex.h"
+	"CThreadEvent.h"
+	<process.h>
+	<pthread.h>
+	<signal.h>
+
+1514944982 /media/sf_Share/AntThread/Include/Public/irrString.h
+	"HConfig.h"
+	"irrAllocator.h"
+	"irrMath.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1514944982 /media/sf_Share/AntThread/Include/Public/irrAllocator.h
+	"HConfig.h"
+	<new>
+	<memory.h>
+
+1514944982 /media/sf_Share/AntThread/Include/Public/irrMath.h
+	"irrTypes.h"
+	<math.h>
+	<float.h>
+	<stdlib.h>
+	<limits.h>
+
+1515489363 /media/sf_Share/AntThread/Include/Public/INoCopy.h
+
+1515489564 /media/sf_Share/AntThread/Include/Thread/CMutex.h
+	"HConfig.h"
+	"HMutexType.h"
+	"INoCopy.h"
+	<winsock2.h>
+	<Windows.h>
+	<errno.h>
+	<pthread.h>
+	<sys/select.h>
+
+1503666144 /media/sf_Share/AntThread/Include/Thread/HMutexType.h
+
+1508470520 /media/sf_Share/AntThread/Include/Thread/CThreadEvent.h
+	"HConfig.h"
+	"irrTypes.h"
+	<pthread.h>
+	<errno.h>
+
+1515490079 /media/sf_Share/AntThread/Include/Thread/CThreadPool.h
+	"irrList.h"
+	"IRunnable.h"
+	"CThread.h"
+	"CCondition.h"
+
+1514944982 /media/sf_Share/AntThread/Include/Public/irrList.h
+	"HConfig.h"
+	"irrAllocator.h"
+	"irrMath.h"
+
+1515502817 /media/sf_Share/AntThread/Include/Thread/CCondition.h
+	"HConfig.h"
+	"irrTypes.h"
+	"INoCopy.h"
+	<winsock2.h>
+	<Windows.h>
+	<pthread.h>
+	<errno.h>
+
+1508470506 /media/sf_Share/AntThread/Include/Thread/CProcessManager.h
+	"CProcessHandle.h"
+	"irrArray.h"
+	"irrMap.h"
+	"path.h"
+
+1515489486 /media/sf_Share/AntThread/Include/Thread/CProcessHandle.h
+	"HConfig.h"
+	"IReferenceCounted.h"
+
+1514944982 /media/sf_Share/AntThread/Include/Public/IReferenceCounted.h
+	"irrTypes.h"
+
+1514944982 /media/sf_Share/AntThread/Include/Public/irrArray.h
+	"HConfig.h"
+	"heapsort.h"
+	"irrAllocator.h"
+	"irrMath.h"
+
+1514944982 /media/sf_Share/AntThread/Include/Public/heapsort.h
+	"HConfig.h"
+
+1514944982 /media/sf_Share/AntThread/Include/Public/irrMap.h
+	"HConfig.h"
+	"irrMath.h"
+
+1514944982 /media/sf_Share/AntThread/Include/Public/path.h
+	"irrString.h"
+
+1515503119 /media/sf_Share/AntThread/Include/Thread/CAtomicValue32.h
+	"HConfig.h"
+	"irrTypes.h"
+
