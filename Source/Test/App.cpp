@@ -1,6 +1,3 @@
-#include "HConfig.h"
-#include "IAppLogger.h"
-
 #include "IRunnable.h"
 #include "CThread.h"
 #include "CThreadPool.h"
@@ -43,6 +40,7 @@ public:
     virtual void run() {
         CThread* td = CThread::getCurrentThread();
         printf("CWorker::run>>thread id = %u\n", td->getID());
+        //CThread::sleep(10);
     }
 };
 
@@ -51,37 +49,34 @@ void AppWorker(void* param) {
     CAtomicS32& count = *(CAtomicS32*) (param);
     CThread* td = CThread::getCurrentThread();
     printf("AppWorker::>>[thread=%u], [count=%d]\n", td->getID(), ++count);
+    CThread::sleep(10);
 }
 
 
 //for thread test
-void AppStartThreads() {
-    CAtomicS32 count;
-    CThread* td;
+void AppStartThread() {
+    CThread td;
     CWorker wk;
-    td = new CThread();
-    td->start(wk);
-    td->join();
-    delete td;
-    printf("----------------------------------------\n");
+    td.start(wk);
+    td.join();
+}
 
+
+void AppStartThreadPool() {
+    CAtomicS32 count;
     const u32 max = 111;
     CThreadPool pool(9);
     pool.start();
+    CWorker wk;
     for(u32 i = 0; i < 10; ++i) {
         pool.start(&wk);
     }
     for(u32 i = 0; i < max; ++i) {
         pool.start(AppWorker, (void*) (&count));
     }
-    //AppQuit();
-    //pool.stop();
     pool.join();
-    printf("AppStartThreads::>>[count=%d]\n", count.getValue());
-    AppQuit();
+    printf("AppStartThreadPool::>>[count=%d]\n", count.getValue());
 }
-
-
 
 //test process
 void AppStartProcesses() {
@@ -98,15 +93,32 @@ void AppStartProcesses() {
     } else {
         printf("AppStartProcesses failed\n");
     }
-    AppQuit();
 }
 
 }//namespace irr
 
 
 int main(int argc, char** argv) {
-    irr::AppStartThreads();
-    irr::AppStartProcesses();
-    printf("@Test quit success.\n");
+    printf("@1 Start Thread.\n");
+    printf("@2 Start Thread Pool.\n");
+    printf("@3 Start Process.\n");
+    int key = 0;
+    scanf("%d", &key);
+    switch(key) {
+    case 1:
+        irr::AppStartThread();
+        break;
+    case 2:
+        irr::AppStartThreadPool();
+        break;
+    case 3:
+        irr::AppStartProcesses();
+        break;
+    default:
+        printf("@unknown command, pls restart.\n");
+        break;
+    }
+    printf("@Test finish.\n");
+    irr::AppQuit();
     return 0;
 }//main

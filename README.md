@@ -1,4 +1,4 @@
-AntThread V1.0.0.2
+AntThread V1.0.0.3
 ====
 A cross platform thread lib, current for Windows&amp;Linux&amp;Andriod.
 # Usage
@@ -8,26 +8,62 @@ A cross platform thread lib, current for Windows&amp;Linux&amp;Andriod.
 #include "IRunnable.h"
 #include "CThread.h"
 #include "CThreadPool.h"
+#include "CProcessManager.h"
+#include "CAtomicValue32.h"
 
-using namespace irr;
+namespace irr {
+
+void AppQuit() {
+    c8 key = '\0';
+    while('*' != key) {
+        printf("@Please input [*] to quit\n");
+        scanf("%c", &key);
+    }
+}
+
 
 //for thread test
-class CWorker : public IRunnable{
-    public:
-        virtual void run(){
-            CThread* td = CThread::getCurrentThread();
-            printf("CWorker.start::thread id = %u\n", td->getID());
-            CThread::sleep(5000);
-            printf("CWorker.stop::thread id = %u\n", td->getID());
-        }
+class CWorker : public IRunnable {
+public:
+    virtual void run() {
+        CThread* td = CThread::getCurrentThread();
+        printf("CWorker::run>>thread id = %u\n", td->getID());
+        //CThread::sleep(10);
+    }
 };
 
 //for thread test
-void AppWorker(void* param){
+void AppWorker(void* param) {
+    CAtomicS32& count = *(CAtomicS32*) (param);
     CThread* td = CThread::getCurrentThread();
-    printf("AppWorker.start::thread id = %u\n", td->getID());
-    CThread::sleep(5000);
-    printf("AppWorker.stop::thread id = %u\n", td->getID());
+    printf("AppWorker::>>[thread=%u], [count=%d]\n", td->getID(), ++count);
+    CThread::sleep(10);
+}
+
+
+//for thread test
+void AppStartThread() {
+    CThread td;
+    CWorker wk;
+    td.start(wk);
+    td.join();
+}
+
+
+void AppStartThreadPool() {
+    CAtomicS32 count;
+    const u32 max = 111;
+    CThreadPool pool(9);
+    pool.start();
+    CWorker wk;
+    for(u32 i = 0; i < 10; ++i) {
+        pool.start(&wk);
+    }
+    for(u32 i = 0; i < max; ++i) {
+        pool.start(AppWorker, (void*) (&count));
+    }
+    pool.join();
+    printf("AppStartThreadPool::>>[count=%d]\n", count.getValue());
 }
 
 //test process
@@ -47,34 +83,32 @@ void AppStartProcesses() {
     }
 }
 
+}//namespace irr
 
-//for thread & process test
-int main(int argc, char** argv){
-    //thread test
-    CThread* thread;
-    CWorker wk;
-    thread = new CThread();
-    thread->start(wk);
-    thread->join();
-    delete thread;
 
-    //pool test
-    const u32 max = 3;
-    CThreadPool pool(max);
-    pool.start();
-    for(u32 i=0; i<max; ++i){
-        pool.start(&wk);
+int main(int argc, char** argv) {
+    printf("@1 Start Thread.\n");
+    printf("@2 Start Thread Pool.\n");
+    printf("@3 Start Process.\n");
+    int key = 0;
+    scanf("%d", &key);
+    switch(key) {
+    case 1:
+        irr::AppStartThread();
+        break;
+    case 2:
+        irr::AppStartThreadPool();
+        break;
+    case 3:
+        irr::AppStartProcesses();
+        break;
+    default:
+        printf("@unknown command, pls restart.\n");
+        break;
     }
-    for(u32 i=0; i<max; ++i){
-        pool.start(AppWorker, 0);
-    }
-    //pool.stop();
-    pool.join();
-
-
-
-    //process test
-    AppStartProcesses();
+    printf("@Test finish.\n");
+    irr::AppQuit();
     return 0;
-}
+}//main
+
 ```
