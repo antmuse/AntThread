@@ -2,7 +2,27 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="../../Source/Thread/CNamedMutex.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../Source/Public/IAppLogger.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1036" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../../Source/Thread/CSpinlock.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="350" topLine="13" />
+		</Cursor>
+	</File>
+	<File name="../../Include/HConfig.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="968" topLine="57" />
+		</Cursor>
+	</File>
+	<File name="../../Source/Thread/HAtomicOperator.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3460" topLine="120" />
+		</Cursor>
+	</File>
+	<File name="../../Source/Thread/CNamedMutex.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
@@ -12,17 +32,7 @@
 			<Cursor1 position="1485" topLine="49" />
 		</Cursor>
 	</File>
-	<File name="../../Source/Public/IAppLogger.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1036" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="../../Include/HConfig.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="968" topLine="57" />
-		</Cursor>
-	</File>
-	<File name="../../Source/Thread/CThreadPool.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../Source/Thread/CThreadPool.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3192" topLine="13" />
 		</Cursor>
@@ -31,14 +41,9 @@
 			<Collapse line="19" />
 			<Collapse line="30" />
 			<Collapse line="43" />
-			<Collapse line="98" />
-			<Collapse line="114" />
-			<Collapse line="130" />
-			<Collapse line="146" />
-			<Collapse line="169" />
 		</Folding>
 	</File>
-	<File name="../../Source/Thread/CMutex.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../Source/Thread/CMutex.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1392" topLine="12" />
 		</Cursor>

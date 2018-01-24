@@ -179,6 +179,7 @@
     <ClInclude Include="..\..\..\Include\irrTypes.h" />
     <ClInclude Include="..\..\..\Include\Public\heapsort.h" />
     <ClInclude Include="..\..\..\Include\Public\IAppLogger.h" />
+    <ClInclude Include="..\..\..\Include\Public\INoCopy.h" />
     <ClInclude Include="..\..\..\Include\Public\IReferenceCounted.h" />
     <ClInclude Include="..\..\..\Include\Public\irrAllocator.h" />
     <ClInclude Include="..\..\..\Include\Public\irrArray.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="..\..\..\Source\Thread\CProcessManager.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CReadWriteLock.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CSemaphore.cpp" />
+    <ClCompile Include="..\..\..\Source\Thread\CSpinlock.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CThread.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CThreadEvent.cpp" />
     <ClCompile Include="..\..\..\Source\Thread\CThreadPool.cpp" />

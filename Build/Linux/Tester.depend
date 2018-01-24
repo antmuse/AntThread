@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1516672183 source:/media/sf_Share/AntThread/Source/Test/App.cpp
-	"HConfig.h"
-	"IAppLogger.h"
+1516765148 source:/media/sf_Share/AntThread/Source/Test/App.cpp
 	"IRunnable.h"
 	"CThread.h"
 	"CThreadPool.h"
 	"CProcessManager.h"
 	"CAtomicValue32.h"
+	"HAtomicOperator.h"
+	"CSpinlock.h"
 
 1514208687 /media/sf_Share/AntThread/Include/HConfig.h
 	"assert.h"
@@ -55,7 +55,7 @@
 	<stdlib.h>
 	<limits.h>
 
-1515489363 /media/sf_Share/AntThread/Include/Public/INoCopy.h
+1516765963 /media/sf_Share/AntThread/Include/Public/INoCopy.h
 
 1515489564 /media/sf_Share/AntThread/Include/Thread/CMutex.h
 	"HConfig.h"
@@ -124,7 +124,14 @@
 1514944982 /media/sf_Share/AntThread/Include/Public/path.h
 	"irrString.h"
 
-1515503119 /media/sf_Share/AntThread/Include/Thread/CAtomicValue32.h
+1516761447 /media/sf_Share/AntThread/Include/Thread/CAtomicValue32.h
 	"HConfig.h"
+	"irrTypes.h"
+
+1516763631 /media/sf_Share/AntThread/Include/Thread/HAtomicOperator.h
+	"HConfig.h"
+	"irrTypes.h"
+
+1516766090 /media/sf_Share/AntThread/Include/Thread/CSpinlock.h
 	"irrTypes.h"
 

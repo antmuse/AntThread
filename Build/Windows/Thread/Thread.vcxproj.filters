@@ -102,6 +102,9 @@
     <ClInclude Include="..\..\..\Include\Public\path.h">
       <Filter>Include\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Include\Public\INoCopy.h">
+      <Filter>Include\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Source\Thread\CMutex.cpp">
@@ -144,6 +147,9 @@
       <Filter>Source\Thread</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Source\Thread\CCondition.cpp">
+      <Filter>Source\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Thread\CSpinlock.cpp">
       <Filter>Source\Thread</Filter>
     </ClCompile>
   </ItemGroup>

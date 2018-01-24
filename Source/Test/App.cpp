@@ -3,6 +3,8 @@
 #include "CThreadPool.h"
 #include "CProcessManager.h"
 #include "CAtomicValue32.h"
+#include "HAtomicOperator.h"
+#include "CSpinlock.h"
 
 
 #if defined(APP_PLATFORM_WINDOWS)
