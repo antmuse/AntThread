@@ -77,7 +77,7 @@ void AppStartThreadPool() {
         pool.start(AppWorker, (void*) (&count));
     }
     pool.join();
-    printf("AppStartThreadPool::>>[count=%d]\n", count.getValue());
+    printf("AppStartThreadPool::>>[count=%d]\n", count());
 }
 
 //test process
