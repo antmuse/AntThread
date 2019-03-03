@@ -71,10 +71,10 @@ void AppStartThreadPool() {
     pool.start();
     CWorker wk;
     for(u32 i = 0; i < 10; ++i) {
-        pool.start(&wk);
+        pool.addTask(&wk);
     }
     for(u32 i = 0; i < max; ++i) {
-        pool.start(AppWorker, (void*) (&count));
+        pool.addTask(AppWorker, (void*) (&count));
     }
     pool.join();
     printf("AppStartThreadPool::>>[count=%d]\n", count());
